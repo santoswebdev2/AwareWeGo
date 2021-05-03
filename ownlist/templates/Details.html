@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+<title>TOUR DESTINATION GUIDE</title>
+
+</head>  
+<body>  
+     <h1>TOUR DESTINATION GUIDE</h1>
+
+     <form method="POST" action="/ownlist/{{ list.id }}/add_item">
+
+
+     <label > Places : </label> 
+     <input type="text" id="jPlaces" placeholder="Place you want to visit in CALABARZON" name="jPlaces" >
+
+     <label > Contact Number : </label> 
+     <input type="text" id="jNumber" placeholder="Enter your current number" name="jNumber" >
+
+     <label > Date : </label> 
+     <input type="text" id="jDate" placeholder="MM/DD/YYYY" name="jDate" >
+    {% csrf_token %}
+
+    <input type="submit" id="btnContinue" name="btnContinue"style="font-size: 16px;" value="Continue">
+    </form> 
+ 
+           
+<table id="JudrieTable" name='tr'>
+      
+          
+       <tr>
+       {% for item in list.item_set.all %} 
+       <! -- {{ forloop.counter }}:  -->
+               <td>{{ item.sPlace }}</td>
+   
+         <td>{{ item.sNumber }}</td>
+        
+        <td>{{ item.sDate }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+
+</body>   
+</html>
+
+ 

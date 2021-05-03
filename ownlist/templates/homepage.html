@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EZTOUR</title>
+
+<body style="background-image:url('https://files.123freevectors.com/wp-content/original/142191-blue-and-white-presentation-background.jpg'); 
+background-attachment: fixed; background-repeat: no-repeat;background-size: 100% 100%">
+</body> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 150px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: black;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #black;
+  width: 70%;
+  border-left: none;
+  height: 257px;
+  display: none;
+}
+
+/* Clear floats after the tab */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container {
+ background-size: contain, cover;
+}
+
+</style>
+</head>
+<body>
+<center>
+
+<h2>EZTOUR</h2><center/>
+<p>OVERVIEW</p>
+
+<div class="tab">
+
+  <button class="tablinks" onmouseover="openCity(event, 'Laguna')">Laguna</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Batangas')">Batangas</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Rizal')">Rizal</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Quezon')">Quezon</button>
+</div>
+
+<div id="Laguna" class="tabcontent">
+  <h3>Laguna</h3>
+<p>Laguna is a province of the Philippines located in the CALABARZON region in Luzon. Its capital is Santa Cruz and it is found south-east of Metro Manila, southern province of Rizal, west of Quezon, north of Batangas and east of Cavite. Laguna de bay, which is the largest lake in the Philippines, is almost surrounded by the whole province of Laguna. The province got its name from the Spanish word "lago", which means lake. Laguna is known as the birthplace of Jose Rizal, the national hero of the Philippines. Also known to tourists are the Pagsanjan Falls, Park Town of Pila, Laguna, The Woodcarvings of men in Paete and Pakil, The Hot Springs of Los Baños on the slopes of Mt. Makiling and the Hidden Valley Springs in Calauan.
+</p>
+</div>
+
+<div id="Batangas" class="tabcontent">
+  <h3>Batangas</h3>
+<p>Batangas City is the largest and capital city of the Province of Batangas, Philippines. The city is also known as the “Industrial Port City of CALABARZON” and is currently classified as one of the fastest urbanizing cities of the Philippines.</p>
+</div>
+
+<div id="Rizal" class="tabcontent">
+  <h3>Rizal</h3>
+<p>Rizal Province has long been known for its many spectacular attractions that have offered its visitors moments of adventure and leisure they won't soon forget. 
+
+Rizal is a province located in the CALABARZON, just 16 kilometers east of Manila. The province was named after the country's national hero, José Rizal.
+
+The province is bordered by Metro Manila to the west, the province of Bulacan to the north, Quezon to the east and Laguna Province to the south. The province also lies on the northern shores of Laguna de Bay, the largest lake in the country.
+
+Rizal is a mountainous province perched on the western slopes of the southern portion of the Sierra Madre mountain range. Antipolo boasts of a wonderful view of Metro Manila and it is where Hinulugang Taktak, a waterfall popular with tourists, can be found.
+
+Rizal is also one of  the provinces in the region that is abundant with natural wonders and artistic attractions. This is why the province is mostly visited by the tourists.</p>
+</div>
+
+<div id="Quezon" class="tabcontent">
+<h3>Quezon<h3>
+<p>Quezon, who was born in Baler, formerly part of Quezon. Historical Background: The Province formerly known as Tayabas, was explored by the Spaniards in 1571 and 1572 when Juan de Salcedo visited and explored upon the order of the first Spanish Governor General of the Philippines, Miguel Lopez de Legaspi.</p>
+</div>
+<div class="clearfix"></div>
+<br>
+<br>
+<br>
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+<br>
+<h4>REGISTERED YOUR INFORMATION</h4>
+
+<form action="/ownlist/new">
+  <label for="fname">First name:</label><br>
+  <input type="text" id="fname" name="fname" placeholder ="Enter your First Name"><br><br>
+  <label for="lname">Last name:</label><br>
+  <input type="text" id="lname" name="lname" placeholder ="Enter your Last Name"><br><br>
+  <label for="lname">Email Address:</label><br>
+  <input type="text" id="address" name="address" placeholder ="Enter your Email Address"><br><br>
+  <input type="submit" id="btnContinue" name="btnContinue"style="font-size: 16px;" value="Continue">
+
+</form> 
+
+<table id="JudrieTable" name='tr'>
+      
+          
+       <tr>
+       {% for item in list.item_set.all %} 
+       <! -- {{ forloop.counter }}:  -->
+               <td>{{ item.sFname }}</td>
+   
+         <td>{{ item.sLname}}</td>
+        
+        <td>{{ item.sEaddress}}</td>
+          </tr>
+        {% endfor %}
+    </table>
+
+<i frame >
+</body>
+</html>

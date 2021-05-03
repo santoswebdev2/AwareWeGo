@@ -97,5 +97,12 @@ class PageTest(unittest.TestCase):
         self.check_for_row_in_listtable('1: Mickey Mouse in Disney Wonderland')
         self.check_for_row_in_listtable("2: Red Shoes White in White's King Palace")
 
+#       table = self.browser.find_element_by_id('listTable')
+#       rows = table.find_element_by_tag_name('tr')
+#       self.assertIn('1: Mickey Mouse in Disney Wonderland', [row.text for row in rows])
+#       self.assertIn("2: Red Shoes White in White's King Palace", [row.text for row in rows])
+
+
+        
 if _name__=='__main_':
     unittest.main()
