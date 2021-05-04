@@ -94,4 +94,3 @@ class ORM(TestCase):
         self.assertEqual(second_saved_item.sFname, 'Item the second')
         self.assertEqual(second_saved_item.list, list_)
 
-

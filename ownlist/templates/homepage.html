@@ -134,7 +134,7 @@ function openCity(evt, cityName) {
 <br>
 <h4>REGISTERED YOUR INFORMATION</h4>
 
-<form action="/ownlist/new">
+<form method="POST" action="/ownlist/new">
   <label for="fname">First name:</label><br>
   <input type="text" id="fname" name="fname" placeholder ="Enter your First Name"><br><br>
   <label for="lname">Last name:</label><br>
@@ -142,15 +142,15 @@ function openCity(evt, cityName) {
   <label for="lname">Email Address:</label><br>
   <input type="text" id="address" name="address" placeholder ="Enter your Email Address"><br><br>
   <input type="submit" id="btnContinue" name="btnContinue"style="font-size: 16px;" value="Continue">
-
+{% csrf_token %}
 </form> 
 
 <table id="JudrieTable" name='tr'>
       
           
        <tr>
-       {% for item in list.item_set.all %} 
-       <! -- {{ forloop.counter }}:  -->
+         {% for item in items %}
+         <! -- {{ forloop.counter }}:  -->
                <td>{{ item.sFname }}</td>
    
          <td>{{ item.sLname}}</td>
@@ -160,6 +160,5 @@ function openCity(evt, cityName) {
         {% endfor %}
     </table>
 
-<i frame >
 </body>
 </html>

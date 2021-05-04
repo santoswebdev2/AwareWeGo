@@ -21,7 +21,7 @@ def new_list(request):
 
 def add_item(request, list_id):
     list_ = List.objects.get(id=list_id)
-    Item.objects.create(sPlace=request.POST['jPlaces'],sNumber =request.POST['jNumber'],sDate =request.POST['jDate'], list=list_)
+    Item.objects.create(sPlace=request.POST['jPlaces'],sNumber =request.POST['jNumber'],sDate=request.POST['jDate'], list=list_)
     return redirect(f'/ownlist/{list_.id}/')
 
 

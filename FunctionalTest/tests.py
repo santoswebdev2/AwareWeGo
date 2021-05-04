@@ -59,7 +59,7 @@ class PageTest(LiveServerTestCase):
       btnContinue.click()
       time.sleep(2)
 
-        
+
       inputjPlaces = self.browser.find_element_by_id('jPlaces')
       self.assertEqual(inputjPlaces.get_attribute('placeholder'),'Place you want to visit in CALABARZON')
       inputjPlaces.click()
