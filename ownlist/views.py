@@ -1,27 +1,56 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from ownlist.models import Item, List
+from ownlist.models import PERSONAL_INFORMATION,CATEGORY,TRAVEL_DETAILS,REVIEWS,STATUS
 
 
 def home_page(request):
-    items = Item.objects.all()
-    return render(request, 'homepage.html', {'items' : items})
+    personal_informations = PERSONAL_INFORMATION.objects.all()
+    return render(request, 'homepage.html', {'personal_informations' : personal_informations})
     
-
-
-def view_list(request, list_id):
-    list_ = List.objects.get(id=list_id)
-    return render(request, 'Details.html', {'list': list_})
+def view_list(request, personal_informaion_id):
+    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_informaion_id)
+    return render(request, 'Details.html', {'personal_information': personal_information_})
 
 
 def new_list(request):
-    list_ = List.objects.create()
-    Item.objects.create(sFname=request.POST['fname'],sLname =request.POST['lname'],sEaddress=request.POST['address'], list=list_) 
-    return redirect(f'/ownlist/{list_.id}/')
+    personal_information_ = PERSONAL_INFORMATION.objects.create()
+    #CATEGORY.objects.create(EFname=request.POST['fname'],ELname =request.POST['lname'],ENumber=request.POST['address'],EDate=request.POST['Date'], personal_informaion=personal_informaion_) 
+    return redirect(f'/ownlist/{personal_information_.id}/')
 
-def add_item(request, list_id):
-    list_ = List.objects.get(id=list_id)
-    Item.objects.create(sPlace=request.POST['jPlaces'],sNumber =request.POST['jNumber'],sDate=request.POST['jDate'], list=list_)
-    return redirect(f'/ownlist/{list_.id}/')
+def add_item(request, personal_information_id):
+    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_information_id)
+    #PERSONAL_INFORMATION.objects.create(EPlaces=request.POST['jPlaces'],EAddress =request.POST['jNumber'],personal_informaion=personal_informaion_)
+    return redirect(f'/ownlist/{personal_information_.id}/')
+
+def dataManipulation(request):
+    personal_information = PERSONAL_INFORMATION(fname="JUDRIE")
+    personal_information.save()
+
+    objects = PERSONAL_INFORMATION.objects.all()
+    result = 'printing all entries in PERSONAL INFORMATION model : <br>'
+    for x in objects:
+        res+= x.fname+"<br>"
+
+    pinformation = PERSONAL_INFORMATION.objects.get (fname="JUDRIE")
+    res += 'Printing One entry <br>'
+    pinformation.delete()
+
+    personal_information = PERSONAL_INFORMATION.objects.get(fname="JUDRIE")
+    personal_information.faddress ="Brgy. Summer"
+    personal_information.save ()
+    res = ""
+
+    qs = PUI.objects.filter(fname="JUDRIE")
+    res += "Found : %s results <br>" %qs()
+
+    qs = PERSONAL_INFORMATION.objects.order_by ("faddress")
+    for x in qs:
+        res += x.fname+ x.faddress + '<br>'
+
+
+
+
+
+
 
 

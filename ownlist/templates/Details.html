@@ -9,16 +9,16 @@ background-attachment: fixed; background-repeat: no-repeat;background-size: 100%
 <body>  
      <h1>TOUR DESTINATION LIST</h1>
 
-     <form method="POST" action="/ownlist/{{ list.id }}/add_item">
-
+     <form method="POST" action="/ownlist/{{ personal_information.id }}/add_item">
+     <label > Category: </label> 
+     <input type="text" id="fcategory" placeholder="Enter Category" name="fcategory" >
+     
      <label > Places : </label> 
      <input type="text" id="jPlaces" placeholder="Place you want to visit in CALABARZON" name="jPlaces" >
 
-     <label > Contact Number : </label> 
-     <input type="text" id="jNumber" placeholder="Enter your current number" name="jNumber" >
+     <label > Address : </label> 
+     <input type="text" id="jaddress" placeholder="Enter travel address" name="jaddress" >
 
-     <label > Date : </label> 
-     <input type="text" id="jDate" placeholder="MM/DD/YYYY" name="jDate" >
     {% csrf_token %}
 
     <input type="submit" id="btnContinue" name="btnContinue"style="font-size: 16px;" value="Continue">
