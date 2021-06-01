@@ -13,9 +13,8 @@ def view_list(request, personal_informaion_id):
 
 
 def new_list(request):
-    personal_information_ = PERSONAL_INFORMATION.objects.create()
-    #CATEGORY.objects.create(EFname=request.POST['fname'],ELname =request.POST['lname'],ENumber=request.POST['address'],EDate=request.POST['Date'], personal_informaion=personal_informaion_) 
-    return redirect(f'/ownlist/{personal_information_.id}/')
+    pinformation = PERSONAL_INFORMATION.objects.create(tname=request.POST['fname'],taddress=request.POST['faddress'],tnumber=request.POST['fnumber']) 
+    return redirect(f'/ownlist/{pinformation.id}/')
 
 def add_item(request, personal_information_id):
     personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_information_id)
