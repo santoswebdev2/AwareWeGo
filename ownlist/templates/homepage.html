@@ -3,7 +3,7 @@
 <head>
     <title>EZTOUR</title>
 
-<body style="background-image:url('https://files.123freevectors.com/wp-content/original/142191-blue-and-white-presentation-background.jpg'); 
+<body style="background-image:url('https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'); 
 background-attachment: fixed; background-repeat: no-repeat;background-size: 100% 100%">
 </body> 
 
@@ -66,6 +66,121 @@ body {font-family: "Lato", sans-serif;}
 .container {
  background-size: contain, cover;
 }
+body {
+  background-image: url(https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+  -webkit-background-size:cover;
+  background-size:cover;
+  background-position: center center;
+  height: 100vh;
+    font-family: poppins;
+}
+.navbar{
+  padding-top: 25px;
+}
+nav {
+ position: relative;
+ width: calc(100% - 60px);
+ margin: 0 auto;
+ background: #000000;
+ z-index: 1;
+ text-align: right;
+ padding-right: 2%;
+}
+.logo {
+  width: 25%;
+  float: left;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 25px;
+  text-align: left;
+  padding: 10px 25px;
+}
+.menu-area li {
+  display: inline-block;
+    list-style-type: none;
+}
+.menu-area a {
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  padding: 15px 25px;
+  font-size: 14px;
+  line-height: 30px;
+  position: relative;
+  z-index: 1;
+    text-decoration: none;    
+}
+.menu-area a:hover {
+  background: deeppink;
+  color: #fff;
+}
+nav:before {
+  position: absolute;
+  content: '';
+  border-top: 10px solid #333;
+  border-right: 10px solid #333;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  top: 100%;
+  left: 0;
+}
+nav:after {
+  position: absolute;
+  content: '';
+  border-top: 10px solid #333;
+  border-left: 10px solid #333;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  top: 100%;
+  right: 0;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+input {
+  appearance: none;
+  border-radius: 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 1.5rem;
+  &+.input {
+    margin-top: 1.5rem;
+  }
+}
+
+.input-label {
+  color: #8597a3;
+  position: absolute;
+  top: 1.5rem;
+  transition: .25s ease;
+}
+
+.input-field {
+  border: 0;
+  z-index: 1;
+  background-color: transparent;
+  border-bottom: 2px solid #eee; 
+  font: inherit;
+  font-size: 1.125rem;
+  padding: .25rem 0;
+  &:focus, &:valid {
+    outline: 0;
+    border-bottom-color: #6658d3;
+    &+.input-label {
+      color: #6658d3;
+      transform: translateY(-1.5rem);
+    }
+  }
+}
 
 </style>
 </head>
@@ -74,7 +189,16 @@ body {font-family: "Lato", sans-serif;}
 
 <h2>EZTOUR</h2><center/>
 <p>OVERVIEW</p>
+<div class="navbar">
+  <nav>
+     <div class="logo">
+EZ  TOUR</div>
+<ul class="menu-area">
+<li><a href="/class">Home</a></li>
 
+</ul>
+</nav>    
+</div>
 <div class="tab">
 
   <button class="tablinks" onmouseover="openCity(event, 'Laguna')">Laguna</button>
@@ -134,7 +258,7 @@ function openCity(evt, cityName) {
 <br>
 <h4>REGISTERED YOUR INFORMATION</h4>
 
-<form method="POST" action="/ownlist/new">
+<form method="POST" action="/new">
   <label for="fname">Name:</label><br>
   <input type="text" id="fname" name="fname" placeholder ="Enter your Name"><br><br>
   <label for="faddress">Address:</label><br>
@@ -149,16 +273,20 @@ function openCity(evt, cityName) {
       
           
        <tr>
-         {% for item in items %}
+         {% for personal_information in personal_informations %}
          <! -- {{ forloop.counter }}:  -->
                <td>{{ item.sFname }}</td>
    
-         <td>{{ item.sLname}}</td>
-        
-        <td>{{ item.sEaddress}}</td>
+        <td>{{ personal_information.tname}}</td>
+        <td>{{ ipersonal_information.taddress}}</td>
+        <td>{{ ipersonal_information.tnumber}}</td>
+        <td><a href="edit/{{personal_information.id}}">EDIT</a></td>
+        <td><a href="delete/{{personal_information.id}}">DELETE</a></td>
+    
           </tr>
         {% endfor %}
     </table>
-
+</tr>
+  
 </body>
 </html>

@@ -203,68 +203,56 @@ input {
   }
 }
 </style>
-</head>
-<body>
-<center>
-
-<h2>EZTOUR</h2><center/>
-<p>OVERVIEW</p>
 <div class="navbar">
   <nav>
      <div class="logo">
 EZ  TOUR</div>
 <ul class="menu-area">
-<li><a href="/">Home</a></li>
-
+<li><a href="#">Home</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
 </ul>
 </nav>    
 </div>
+<div class="container">
+  <!-- code here -->
+  <div class="card">
+    <div class="card-image">  
+      <h2 class="card-heading">
+        <small></small>
+      </h2>
+    </div>
+      <form class="card-form" method="POST" action="/next2">
 
-<div class="tab">
-     <h1>TOUR DESTINATION LIST</h1>
-    
-     <form class="card-form" method="POST" action="/{{personal_information.id}}/add_item">
-
-     <label > Category: </label> 
-       <div class="input">
-     <input type="text" id="fcategory" placeholder="Enter Category" name="fcategory" >
-     <br>
-        
-                </div>
-            <div class="input">
-     <label > Places : </label> 
-     <input type="text" id="jPlaces" placeholder="Place you want to visit in CALABARZON" name="jPlaces" >
-     <br>
-        
-                </div>
-            <div class="input">
-     <label > Address : </label> 
-     <input type="text" id="jAddress" placeholder="Enter travel address" name="jAddress" >
- 
-    {% csrf_token %}
-     <br>
-
-           </div>
-            <div class="input">
-    <input type="submit" id="btnContinue" name="btnContinue"style="font-size: 16px;" value="Continue">
+      <center>TRAVEL DETAILS</center>
+      <div class="input">
+        <input type="text" class="input-field" id="traveltip" name="traveltip" placeholder="travel tips" value="" required/>
+        <label class="input-label"></label>
       </div>
-    </form> 
- 
-           
-<table id="JudrieTable" name='tr'>
-      
-          
-       {% for category in personal_information.category_set.all %}
-        <tr>
-            <!{{ forloop.counter }}:  -->
-            <td>{{ forloop.counter }} : {{ category.ecategory }}</td>
-            <td>{{ category.eplaces }}</td>
-            <td>{{ category.eaddress }}</td>
-    
-        </tr> {% endfor %} 
-    </table>
+            <div class="input">
+        <input type="text" class="input-field" id="traveldetail" name="traveldetail" placeholder="travel details" value="" required/>
+        <label class="input-label"></label>
+      </div>
+      <br><br>
+      <center>REVIEWS</center>
+      <div class="input">
+        <input type="date" class="input-field" value="" required/>
+        <label class="input-label"></label>
+      </div>
+            <div class="input">
+        <input type="text" class="input-field" id="expens" name="expens" placeholder="expenses" value="" required/>
+        <label class="input-label"></label>
+      </div>
+      <div class="input">
+        <input type="text" class="input-field" id="traveldetail" name="traveldetail" placeholder="travel details" value="" required/>
+        <label class="input-label"></label>
+      </div>
 
-</body>   
-</html>
-
- 
+      <div class="action">
+        <button class="action-button">SUBMIT</button>
+      </div>
+      {% csrf_token %}
+    </form>
+  </div>
+</div>

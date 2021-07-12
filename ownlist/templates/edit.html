@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EZTOUR</title>
+
+<body style="background-image:url('https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'); 
+background-attachment: fixed; background-repeat: no-repeat;background-size: 100% 100%">
+</body> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 150px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: black;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #black;
+  width: 70%;
+  border-left: none;
+  height: 257px;
+  display: none;
+}
+
+/* Clear floats after the tab */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container {
+ background-size: contain, cover;
+}
+body {
+  background-image: url(https://images.pexels.com/photos/1631677/pexels-photo-1631677.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+  -webkit-background-size:cover;
+  background-size:cover;
+  background-position: center center;
+  height: 100vh;
+    font-family: poppins;
+}
+.navbar{
+  padding-top: 25px;
+}
+nav {
+ position: relative;
+ width: calc(100% - 60px);
+ margin: 0 auto;
+ background: #000000;
+ z-index: 1;
+ text-align: right;
+ padding-right: 2%;
+}
+.logo {
+  width: 25%;
+  float: left;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 25px;
+  text-align: left;
+  padding: 10px 25px;
+}
+.menu-area li {
+  display: inline-block;
+    list-style-type: none;
+}
+.menu-area a {
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  padding: 15px 25px;
+  font-size: 14px;
+  line-height: 30px;
+  position: relative;
+  z-index: 1;
+    text-decoration: none;    
+}
+.menu-area a:hover {
+  background: deeppink;
+  color: #fff;
+}
+nav:before {
+  position: absolute;
+  content: '';
+  border-top: 10px solid #333;
+  border-right: 10px solid #333;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  top: 100%;
+  left: 0;
+}
+nav:after {
+  position: absolute;
+  content: '';
+  border-top: 10px solid #333;
+  border-left: 10px solid #333;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  top: 100%;
+  right: 0;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+input {
+  appearance: none;
+  border-radius: 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 1.5rem;
+  &+.input {
+    margin-top: 1.5rem;
+  }
+}
+
+.input-label {
+  color: #8597a3;
+  position: absolute;
+  top: 1.5rem;
+  transition: .25s ease;
+}
+
+.input-field {
+  border: 0;
+  z-index: 1;
+  background-color: transparent;
+  border-bottom: 2px solid #eee; 
+  font: inherit;
+  font-size: 1.125rem;
+  padding: .25rem 0;
+  &:focus, &:valid {
+    outline: 0;
+    border-bottom-color: #6658d3;
+    &+.input-label {
+      color: #6658d3;
+      transform: translateY(-1.5rem);
+    }
+  }
+}
+
+</style>
+</head>
+<body>
+<center>
+
+<h2>EZTOUR</h2><center/>
+<p>OVERVIEW</p>
+<div class="navbar">
+  <nav>
+     <div class="logo">
+EZ  TOUR</div>
+<ul class="menu-area">
+<li><a href="/class">Home</a></li>
+
+</ul>
+</nav>    
+</div>
+
+<br>
+<h4>REGISTERED YOUR INFORMATION</h4>
+
+<form method="POST" action="update/{{personal_informations.id }}">
+  <label for="fname">Name:</label><br>
+  <input type="text" id="fname" name="fname" value="{{ personal_informations.tname }}"><br><br>
+  <label for="faddress">Address:</label><br>
+  <input type="text" id="faddress" name="faddress" value="{{ personal_informations.taddress }}"><br><br>
+  <label for="fnumber">Contact Number:</label><br>
+  <input type="text" id="fnumber" name="fnumber" value="{{ personal_informations.tnumber }}"><br><br>
+  <input type="submit" id="btnContinue" name="btnContinue"style="font-size: 16px;" value="Continue">
+{% csrf_token %}
+</form> 
+
+
+        
+           
+
+
+      
+
+         
+     </div>
+    </form>
+
+
+
+
+  
+</body>
+</html>

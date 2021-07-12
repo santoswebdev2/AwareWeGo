@@ -6,20 +6,45 @@ from ownlist.models import PERSONAL_INFORMATION,CATEGORY,TRAVEL_DETAILS,REVIEWS,
 def home_page(request):
     personal_informations = PERSONAL_INFORMATION.objects.all()
     return render(request, 'homepage.html', {'personal_informations' : personal_informations})
-    
-def view_list(request, personal_informaion_id):
-    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_informaion_id)
+
+def new_list(request):                                                            
+    spinformation=PERSONAL_INFORMATION.objects.create(tname=request.POST['fname'],taddress=request.POST['faddress'],tnumber=request.POST['fnumber']) 
+    return redirect(f'{spinformation.id}/next')
+
+def view_list(request, personal_information_id):
+    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_information_id)
     return render(request, 'Details.html', {'personal_information': personal_information_})
 
-
-def new_list(request):
-    pinformation = PERSONAL_INFORMATION.objects.create(tname=request.POST['fname'],taddress=request.POST['faddress'],tnumber=request.POST['fnumber']) 
-    return redirect(f'/ownlist/{pinformation.id}/')
-
 def add_item(request, personal_information_id):
-    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_information_id)
-    #PERSONAL_INFORMATION.objects.create(EPlaces=request.POST['jPlaces'],EAddress =request.POST['jNumber'],personal_informaion=personal_informaion_)
-    return redirect(f'/ownlist/{personal_information_.id}/')
+    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_information_id)						
+    CATEGORY.objects.create(ecategory=request.POST['fcategory'],eplaces=request.POST['jPlaces'],eaddress=request.POST['jAddress'],personal_information=personal_information_)
+    return redirect(f'/summer')
+
+def summer(request):
+    return render(request, '3-4.html')
+
+def next2(request):
+    return render(request, '5model .html')
+
+def edit(request, id):
+    personal_informations = PERSONAL_INFORMATION.objects.get(id=id)
+    context = {'personal_informations': personal_informations}
+    return render(request, 'edit.html', context)
+ 
+def update(request, id):
+    personal_information = PERSONAL_INFORMATION.objects.get(id=id)
+    personal_information.tname = request.POST['fname']
+    personal_information.taddress = request.POST['faddress']
+    personal_information.tnumber = request.POST['fnumber']
+    personal_information.save()
+    return redirect('/')
+ 
+def delete(request, id):
+    personal_information = PERSONAL_INFORMATION.objects.get(id=id)
+    personal_information.delete()
+    return redirect('/')    
+
+
 
 def dataManipulation(request):
     personal_information = PERSONAL_INFORMATION(fname="JUDRIE")
@@ -45,11 +70,5 @@ def dataManipulation(request):
     qs = PERSONAL_INFORMATION.objects.order_by ("faddress")
     for x in qs:
         res += x.fname+ x.faddress + '<br>'
-
-
-
-
-
-
 
 
