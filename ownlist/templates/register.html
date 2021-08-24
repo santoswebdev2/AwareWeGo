@@ -34,8 +34,6 @@ html {
 body {
   font-family: 'Lato', sans-serif;
   margin: 0;
-  background: url('https://littleletterslinked.com/wp-content/uploads/2020/07/HOTEL.jpg') no-repeat center center fixed;
-  background-size: cover;
   color: #0a0a0b;
 }
 
@@ -45,7 +43,7 @@ ul, nav{
 }
 
 a {
-  color: #fff;
+  color: black;
   text-decoration: none;
   cursor: pointer;
   opacity: 0.9;
@@ -55,17 +53,12 @@ a:hover {
   opacity: 1;
 }
 
-h1 {
-  font-size: 3rem;
-  font-weight: 400;
-  color: #fff;
-  margin:2rem;
-}
 h4 {
   font-size: 3rem;
   font-weight: 400;
-  color: #fff;
+  color: black;
   margin:2rem;
+  font-family: Lucida Handwriting, serif;
 }
 i {
   font-size: 1rem;
@@ -80,8 +73,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
+  color: black;
   padding: 5px 50px 0;
+  font-family: Lucida Handwriting, serif;
 }
 
 header nav ul {
@@ -221,81 +215,131 @@ a.btn:hover {
   }
 
 }
+
+
+
+
+input[type=text4], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color:#008d96;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Lucida Handwriting, serif;
+  font-size: 7px;
+
+}
+
+input[type=submit]:hover {
+  background-color: #008B8B;
+
+
+}
+
+div {
+  border-radius: 5px;
+  background-color: rgba(1, 91, 97, 0.4);
+  padding: 20px;
+}
+
+h1 {
+  font-family: Lucida Handwriting, serif;
+  font-size: 60px;
+}
+label {
+  font-family: Lucida Handwriting, serif;
+  font-size: 30px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  width: 100%;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #008B8B;
+  color: black;
+  width: 100%;
+   font-family: Lucida Handwriting, serif;
+  font-size: 20px;
+}
 </style> 
 
-<br>
-<br>
 
-<br>
 
-<body>
-<div class="container">
+<body style="background-image:url('https://i.pinimg.com/originals/f4/56/d6/f456d61db3230f86130983d1f2030011.jpg'); 
+background-attachment: fixed; background-repeat: no-repeat;background-size: 100% 100%">
 
-  <header>
-    <h2><a href="/info"><i class="ion-plane"></i> AwareWeGo</a></h2>
-    <nav>
-      <ul>
-        <li>
-          <a href="/ABOUT" title="About">About</a>
-        </li>
-        <li>
-          <a href="#" title="Contact Us">Contact Us</a>
-        </li>
-         <li>
-          <a href="/blog" title="Blog">Blog</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
 
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <center>
-
-<h4>UPDATE YOUR INFORMATION</h4>
-<form method="POST" action="update/{{ visitors.id }}">
+<h4>REGISTER YOUR INFORMATION</h4>
+</center>
+<div>
+<form method="POST" action="/new">
   <label for="vvname">FullName:</label><br>
-  <input type="text" id="vvname" name="vvname" value="{{ visitors.vname }}" placeholder ="Enter your name"><br><br>
+  <input type="text" id="vvname" name="vvname" placeholder ="Enter your name"><br><br>
   <label for="vvage">Age</label><br>
-  <input type="vvage" id="fpassword" name="vvage" value="{{ visitors.vage }}" placeholder ="Enter your Age"><br><br>
+  <input type="text" id="fpassword" name="vvage" placeholder ="Enter your Age"><br><br>
   <label for="vvcnumber">Contact Number:</label><br>
-  <input type="text" id="vvcnumber" name="vvcnumber" value="{{ visitors.vcnumber }}" placeholder ="Enter your Contact Number"><br><br>
+  <input type="text" id="vvcnumber" name="vvcnumber" placeholder ="Enter your Contact Number"><br><br>
   <label for="vvemail">Email Address:</label><br>
-  <input type="text" id="vvemail" name="vvemail"value="{{ visitors.vemail }}" placeholder ="Enter your Email Address"><br><br>
+  <input type="text" id="vvemail" name="vvemail" placeholder ="Enter your Email Address"><br><br>
   <label for="vvusername">Username:</label><br>
-  <input type="text" id="vvusername" name="vvusername" value="{{ visitors.vusername }}"placeholder ="Enter your Username"><br><br>
+ <input type="text" id="vvusername" name="vvusername" placeholder ="Enter your Username"><br><br>
   <label for="vvpassword">Password:</label><br>
-  <input type="text" id="vvpassword" name="vvpassword"value="{{ visitors.vpassword }}" placeholder ="Enter your Password"><br><br>
-  <button type="submit">Update</button>
-
-<label for="vvname">FullName:</label>
-  <label for="bbdate">{{ booking.blocation }}</label><br>	
-
-  <label for="bbdate">Check-in:</label>
-  <label for="bbdate">{{ booking.bdate }}</label><br>
-
-  <label for="bbdate">Check-out:</label>
-  <label for="bbdate">{{ booking.bdate2 }}</label><br>
-
-  <label for="bbpeople">Pax:</label>
-  <label for="bbdate">{{ booking.bpeople }}</label><br>	
-  
-  <label for="bbrates">Rates:</label>
-  <label for="bbdate">{{ booking.brates }}</label><br>
-  
-
+  <input type="text" id="vvpassword" name="vvpassword" placeholder ="Enter your Password"><br><br>
+ <input type="submit" id="vregister" name="vregister"style="font-size: 16px;" value="Register">
 {% csrf_token %}
 </form> 
-<br>
-<br>
-<br>
-<br>
 </body>
 </html>
+
+
 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Location</title>
+<body style="background-image:url('https://i.pinimg.com/originals/f4/56/d6/f456d61db3230f86130983d1f2030011.jpg'); 
+background-attachment: fixed; background-repeat: no-repeat;background-size: 100% 100%">
+</body> 
+<br>
+<br>
+<br>
+
+
+
+
+<body>
+<center>
+
+<h1>Register Location</h1>
+</center>
+<div>
+<form method="POST" action="/add_location">
+
+<label for="lllocation">Location:</label><br>  
+<input type="text" id="lllocation" name="lllocation" placeholder="Enter Location"><br><br>
+
+<label for="lladdress">Address:</label><br>  
+<input type="text" id="lladdress" name="lladdress" placeholder="Enter Address"><br><br>
+
+
+  <input type="submit" id="ladd" name="ladd" style="font-size: 16px;" value="Add Location"><br>
+
+
+
+
+{% csrf_token %}
+
+
+</div>
+</form> 
+
+<table id="JudrieTable" name='tr'>
+    <tr>
+    <th>Location</th>
+    <th>Address</th>
+    <th>Action</th>	   
+</tr>
+          
+       <tr>
+        {% for location in location %}
+         <! -- {{ forloop.counter }}:  -->
+        
+        <td>{{ location.llocation }}</td>
+        <td>{{ location.laddress}}</td>
+        <td><a href="edit/{{location.id}}">EDIT</a><a href="delete/{{location.id}}"> DELETE</a></td>
+      
+    
+          </tr>
+        {% endfor %}
+    </table>
+</tr>
+
+</body>
+
+<style>
+
+input[type=text4], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color:#008d96;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Lucida Handwriting, serif;
+  font-size: 7px;
+
+}
+
+input[type=submit]:hover {
+  background-color: #008B8B;
+
+
+}
+
+div {
+  border-radius: 5px;
+  background-color: rgba(1, 91, 97, 0.4);
+  padding: 20px;
+}
+
+h1 {
+  font-family: Lucida Handwriting, serif;
+  font-size: 60px;
+}
+label {
+  font-family: Lucida Handwriting, serif;
+  font-size: 30px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  width: 100%;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #008B8B;
+  color: black;
+  width: 100%;
+   font-family: Lucida Handwriting, serif;
+  font-size: 20px;
+}
+</style>
+</html>
+

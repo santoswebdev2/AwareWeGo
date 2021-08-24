@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Booking</title>
+
+
+
 <header>
     <h2><a href="/info"><i class="ion-plane"></i> AwareWeGo</a></h2>
     <nav>
       <ul>
        
-        
         <li>
-          <a href="/aadmin" title="Login">Login</a>
+          <a href="/location" title="Register Location">Register Location</a>
         </li>
 
-	<li>
-          <a href="/location" title="Location">Location</a>
-        </li>
         <li>
           <a href="/blog" title="Blog">Blog</a>
         </li>
@@ -26,60 +26,64 @@
   </header>
 <head>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<center>
-<h1>Discover hotel exclusively in this web. Browse today and stay connected with your important trip details anytime, anywhere.</h1> </center>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<body style="background-image:url('https://wallpaperaccess.com/full/568963.jpg'); 
+<body style="background-image:url('https://assets2.rappler.com/02715D430B424A9AA0885F73B1BD259C/img/81D7119EAD014184BC71AB7985197F2A/2018_PH_bucket_list-January-07-2017-01.jpg'); 
 background-attachment: fixed; background-repeat: no-repeat;background-size: 100% 100%">
 
-
 <center>
-<h4>AwareWeGo Login</h4>
+
+<h1>Booking</h1>
 </center>
 <div>
-<form method="POST" action="/home_log">
+<form method="POST" action="/{{visitor.id}}/bookstatus/statusupdate">
+
+
+
+<table id="JudrieTable" name='tr'>
+    <tr>
+    <th>Location</th>
+    <th>Check-in</th>
+    <th>Check-out</th>
+    <th>Pax</th>
+    <th>Rates</th>
+    <th>Status</th>
+    </tr>
+          
+       <tr>
+        {% for booking in visitor.booking_set.all %}
+         <! -- {{ forloop.counter }}:  -->
+        
+        <td>{{ booking.blocation }}</td>
+        <td>{{ booking.bdate}}</td>
+ 	<td>{{ booking.bdate2}}</td>
+        <td>{{ booking.bpeople}}</td>
+        <td>{{ booking.brates}}</td>
+        <td><select id="bbstatus" name="bbstatus" onchange="cclass();">
+		        <option value="">Select Status</option>
+  			<option value="Approved">Approved</option>
+  			<option value="Disapproved">Disapproved</option>
+			</select><br><br></td>
+      
+    
+          </tr>
+        {% endfor %}
+    </table>
+</tr>
  
 
-  <label for="vvusername">Username:</label><br>
- <input type="text" id="vvusername" name="vvusername" placeholder ="Enter your Username"><br><br>
-  <label for="vvpassword">Password:</label><br>
-  <input type="text" id="vvpassword" name="vvpassword" placeholder ="Enter your Password"><br><br>
-
-
-  <input type="submit" id="vlogin" name="vlogin"style="font-size: 16px;" value="Login">
- <center>
-  <p>Don't have an account?<br>
-  <a href=/register>SIGN UP NOW</a>  </p>
- </center>
-<br>
+      
+  <input type="submit" id="bsumbit" name="bsubmit" style="font-size: 16px;" value="Submit"><br>
 {% csrf_token %}
+
+
+</div>
 </form> 
+
 </body>
 
-
 <style>
+
+
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
 *, *:before, *:after {
@@ -89,15 +93,15 @@ background-attachment: fixed; background-repeat: no-repeat;background-size: 100%
 }
 
 ::-webkit-input-placeholder {
-  color: #black;
+  color: #56585b;
 }
 
 ::-moz-placeholder {
-  color: #black;
+  color: #56585b;
 }
 
 :-moz-placeholder {
-  color: #black;
+  color: #56585b;
 }
 
 html {
@@ -109,7 +113,7 @@ html {
 body {
   font-family: 'Lato', sans-serif;
   margin: 0;
-  color: #black;
+  color: #0a0a0b;
 }
 
 ul, nav{
@@ -181,7 +185,7 @@ a.btn {
 a.btn:hover {
   background: #d73851;
   border: 1px solid #d73851;
-  color: #BLUE;
+  color: #fff;
 }
 
 .cover  {
@@ -345,7 +349,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #BLUE;
+  background-color: #008B8B;
 
 
 }
@@ -359,33 +363,11 @@ div {
 h1 {
   font-family: Lucida Handwriting, serif;
   font-size: 60px;
-
 }
 label {
   font-family: Lucida Handwriting, serif;
   font-size: 30px;
 }
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  text-align: center;
-  padding: 8px;
-  width: 100%;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-  background-color: #008B8B;
-  color: black;
-  width: 100%;
-   font-family: Lucida Handwriting, serif;
-  font-size: 20px;
-}
-
 
 p{
  font-family: Lucida Handwriting, serif;
@@ -400,13 +382,30 @@ p{
 }
 
 a {
-  color: GREEN;
+  color: blue;
 }
 
 a:hover {
-  color: BLACK;
+  color: green;
 }
 
+table, td, th {
+  border: 1px solid black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #008B8B;
+  color: black;
+  
+   font-family: Lucida Handwriting, serif;
+  font-size: 20px;
+}
 </style> 
 
 </html>

@@ -1,74 +1,119 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from ownlist.models import PERSONAL_INFORMATION,CATEGORY,TRAVEL_DETAILS,REVIEWS,STATUS
+from django.http import HttpResponse  
+from ownlist.models import Visitor, Booking, Location , Areg, Member
 
 
 def home_page(request):
-    personal_informations = PERSONAL_INFORMATION.objects.all()
-    return render(request, 'homepage.html', {'personal_informations' : personal_informations})
+    return render(request, 'homepage.html')
+def home_log(request): 
+ if request.method == 'POST':
+        if Visitor.objects.filter(vusername=request.POST['vvusername'], vpassword=request.POST['vvpassword']).exists():
+            visitor_ = Visitor.objects.get(vusername=request.POST['vvusername'], vpassword=request.POST['vvpassword'])
+            return redirect(f'{visitor_.id}/next')
+
+        else:
+            context = {'msg': 'Invalid username or password'}
+            return render(request, 'homepage.html', context)
 
 def new_list(request):                                                            
-    spinformation=PERSONAL_INFORMATION.objects.create(tname=request.POST['fname'],taddress=request.POST['faddress'],tnumber=request.POST['fnumber']) 
-    return redirect(f'{spinformation.id}/next')
+    svisitor = Visitor.objects.create(vname=request.POST['vvname'],vage=request.POST['vvage'],vcnumber=request.POST['vvcnumber'],vemail=request.POST['vvemail'],vusername=request.POST['vvusername'],vpassword=request.POST['vvpassword'])
+    return redirect(f'{svisitor.id}/next')
 
-def view_list(request, personal_information_id):
-    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_information_id)
-    return render(request, 'Details.html', {'personal_information': personal_information_})
+def view_list(request, visitor_id):
+    locations = Location.objects.all()
+    visitor_ = Visitor.objects.get(id=visitor_id)
+    return render(request, 'abooking.html', {'visitor': visitor_,'location' :  locations
+})
 
-def add_item(request, personal_information_id):
-    personal_information_ = PERSONAL_INFORMATION.objects.get(id=personal_information_id)						
-    CATEGORY.objects.create(ecategory=request.POST['fcategory'],eplaces=request.POST['jPlaces'],eaddress=request.POST['jAddress'],personal_information=personal_information_)
-    return redirect(f'/summer')
-
+def add_item(request, visitor_id):
+    visitor_ = Visitor.objects.get(id=visitor_id)						
+  
+    Booking.objects.create(blocation=request.POST['bblocation'],bdate=request.POST['bbdate'],bdate2=request.POST['bbdate2'],bpeople=request.POST['bbpeople'],brates=request.POST['bbrates'],visitor=visitor_)
+    return redirect(f'/{visitor_.id}/next')
 def summer(request):
     return render(request, '3-4.html')
-
+def ABOUT(request):
+    return render(request, 'ABOUT.html')
+def blog(request):
+    return render(request, 'blog.html')
+def info(request):
+    return render(request, 'info.html')
 def next2(request):
     return render(request, '5model .html')
+def aadmin(request):
+    return render(request, 'admin.html')
+def bookstatus(request, visitor_id):
+    locations = Location.objects.all()
+    visitor_ = Visitor.objects.get(id=visitor_id)
+    return render(request, 'bookstatus.html', {'visitor': visitor_,'location' :  locations
+})
+def statusupdate(request, visitor_id):
+    visitor = Booking.objects.get(id=visitor_id)
+    visitor.bstatus= request.POST['bbstatus']
+    visitor.save()   
+    return redirect(f'/{visitor.id}/bookstatus')
+def register(request):
+    visitors = Visitor.objects.all()
+    return render(request, 'register.html', {'visitors' : visitors})
+ 
+def bookview(request, visitor_id):
+    locations = Location.objects.all()
+    visitor_ = Visitor.objects.get(id=visitor_id)
+    return render(request, 'bookview.html', {'visitor': visitor_,'location' :  locations
+})
+
+
+def aaccount(request):
+    aregs = Aregs.objects.all()
+    return render(request, 'account.html', {'aregs' : aregs})
+
+
+
+def adminbook(request):
+    visitors = Visitor.objects.all()
+    return render(request, 'adminbooklist.html', {'visitors' : visitors})
+def add_location(request):   
+   locations = Location(llocation=request.POST['lllocation'],laddress=request.POST['lladdress'])
+   locations.save()
+   
+   return redirect('/location')
+
+def view_location(request):
+    locations = Location.objects.all()
+    return render(request, 'LocationReg.html', {'location' : locations})  
+
+
+
+
+
+
+
 
 def edit(request, id):
-    personal_informations = PERSONAL_INFORMATION.objects.get(id=id)
-    context = {'personal_informations': personal_informations}
+    visitors = Visitor.objects.get(id=id)
+    context = {'visitors': visitors}
     return render(request, 'edit.html', context)
  
 def update(request, id):
-    personal_information = PERSONAL_INFORMATION.objects.get(id=id)
-    personal_information.tname = request.POST['fname']
-    personal_information.taddress = request.POST['faddress']
-    personal_information.tnumber = request.POST['fnumber']
-    personal_information.save()
+    visitor = Visitor.objects.get(id=id)
+    visitor.vname = request.POST['vvname']
+    visitor.vage = request.POST['vvage']
+    visitor.vcnumber = request.POST['vvcnumber']
+    visitor.vusername = request.POST['vvusername']
+    visitor.vpassword = request.POST['vvpassword']
+    visitor.save()
     return redirect('/')
- 
 def delete(request, id):
-    personal_information = PERSONAL_INFORMATION.objects.get(id=id)
-    personal_information.delete()
-    return redirect('/')    
-
-
-
-def dataManipulation(request):
-    personal_information = PERSONAL_INFORMATION(fname="JUDRIE")
-    personal_information.save()
-
-    objects = PERSONAL_INFORMATION.objects.all()
-    result = 'printing all entries in PERSONAL INFORMATION model : <br>'
-    for x in objects:
-        res+= x.fname+"<br>"
-
-    pinformation = PERSONAL_INFORMATION.objects.get (fname="JUDRIE")
-    res += 'Printing One entry <br>'
-    pinformation.delete()
-
-    personal_information = PERSONAL_INFORMATION.objects.get(fname="JUDRIE")
-    personal_information.faddress ="Brgy. Summer"
-    personal_information.save ()
-    res = ""
-
-    qs = PUI.objects.filter(fname="JUDRIE")
-    res += "Found : %s results <br>" %qs()
-
-    qs = PERSONAL_INFORMATION.objects.order_by ("faddress")
-    for x in qs:
-        res += x.fname+ x.faddress + '<br>'
-
+    visitor = Visitor.objects.get(id=id)
+    visitor.delete()
+    return redirect('/')     
+# Create your views here.
+def index(request):
+    if request.method == 'POST':
+        member = Member(username=request.POST['username'], password=request.POST['password'],  firstname=request.POST['firstname'], lastname=request.POST['lastname'])
+        member.save()
+        return redirect('/')
+    else:
+        return render(request, 'index.html')
+ 
 

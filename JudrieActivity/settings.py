@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+#import pymysql  
+#mymysql.install_as_MySQLdb()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +28,7 @@ SECRET_KEY = '+it0ud4x2ep2rvn@16ob6sp5ah4(*ms6-$@@y2xwu6#*!z@9-k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eztour.ph']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -74,13 +77,22 @@ WSGI_APPLICATION = 'JudrieActivity.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#DATABASES = {
+ #   'default': {
+    #   'ENGINE': 'django.db.backends.mysql',
+     #   'NAME': 'juday',
+     #   'USER':'root',
+     #  'PASSWORD':'',
+    #    'HOST':'localhost',
+      #  'PORT': '3306',
+   # }
+#}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

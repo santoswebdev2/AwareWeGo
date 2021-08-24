@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking</title>
+<body style="background-image:url('https://live.staticflickr.com/446/18667295963_31d3b50d16_b.jpg'); 
+background-attachment: fixed; background-repeat: no-repeat;background-size: 100% 100%">
+</body> 
+<br>
+<br>
+<br>
+
+
+
+
+<body>
+<center>
+
+<h1>Booking</h1>
+</center>
+<div>
+<form method="POST" action="/{{visitor.id}}/add_item">
+
+  <label for="bblocation">Location:</label><br>
+ {% for location in location %}
+<select id="bblocation" name="bblocation">
+<option value="0">Add Location</option>
+<option value="{{ location.llocation }}">{{ location.llocation }}</option>
+  </select><br><br>
+{% endfor %}
+  <label for="bbdate">Check-in:</label><br>
+  <input type="date" id="bbdate" name="bbdate" placeholder ="">  
+  <label for="bbdate">Check-out:</label><br>
+  <input type="date" id="bbdate2" name="bbdate2" placeholder ="">
+ 
+
+<br><br>
+  
+
+  <label for="bbpeople">Pax:</label><br>
+  <select id="bbpeople" name="bbpeople" onchange="cclass();">
+		        <option value="">Select Pax</option>
+  			<option value="1,000">1</option>
+  			<option value="3,000">2-3</option>
+  			<option value="6,000">4-5</option>
+			</select><br><br>
+<label for="bbrates">Rates:</label><br>
+<input type="text4" id="bbrates" name="bbrates" placeholder="Amount"><br><br>
+
+  <input type="submit" id="bbook" name="bbook" style="font-size: 16px;" value="Book"><br>
+{% csrf_token %}
+
+
+</div>
+</form> 
+	<script>
+function cclass()
+{
+	var d=document.getElementById("bbpeople");
+	var displaytext=d.options[d.selectedIndex].value;
+	document.getElementById("bbrates").value=displaytext;
+}
+
+
+
+
+</script>
+<table id="JudrieTable" name='tr'>
+    <tr>
+    <th>Location</th>
+    <th>Check-in</th>
+    <th>Check-out</th>
+    <th>Pax</th>
+    <th>Rates</th>
+    <th>Action</th>
+    </tr>
+          
+       <tr>
+        {% for booking in visitor.booking_set.all %}
+         <! -- {{ forloop.counter }}:  -->
+        
+        <td>{{ booking.blocation }}</td>
+        <td>{{ booking.bdate}}</td>
+ 	<td>{{ booking.bdate2}}</td>
+        <td>{{ booking.bpeople}}</td>
+        <td>{{ booking.brates}}</td>
+        <td>><a href="/{{visitor.id}}/next/bookview">status</a</td>
+      
+    
+          </tr>
+        {% endfor %}
+    </table>
+</tr>
+
+</body>
+
+<style>
+
+input[type=text4], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=date] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: Copperplate, serif;
+  font-size: 20px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color:#008d96;
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Lucida Handwriting, serif;
+  font-size: 7px;
+
+}
+
+input[type=submit]:hover {
+  background-color: #008B8B;
+
+
+}
+
+div {
+  border-radius: 5px;
+  background-color: rgba(1, 91, 97, 0.4);
+  padding: 20px;
+}
+
+h1 {
+  font-family: Lucida Handwriting, serif;
+  font-size: 60px;
+}
+label {
+  font-family: Lucida Handwriting, serif;
+  font-size: 30px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  width: 100%;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #008B8B;
+  color: black;
+  width: 100%;
+   font-family: Lucida Handwriting, serif;
+  font-size: 20px;
+}
+</style>
+</html>
+
+
+
+

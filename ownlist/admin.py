@@ -2,11 +2,11 @@
 
 # Register your models here.
 from django.contrib import admin
-from ownlist.models import PERSONAL_INFORMATION,CATEGORY,TRAVEL_DETAILS,REVIEWS,STATUS
+from ownlist.models import Visitor,Booking,Location,Areg
 
-admin.site.register(PERSONAL_INFORMATION)
-admin.site.register(CATEGORY)
-admin.site.register(TRAVEL_DETAILS)
-admin.site.register(REVIEWS)
-admin.site.register(STATUS)
+admin.site.register(Visitor)
+admin.site.register(Booking)
+admin.site.register(Location)
+admin.site.register(Areg)
+
 # Register your models here.
